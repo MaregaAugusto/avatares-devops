@@ -24,7 +24,7 @@ spec:
         image: jenkins/jenkins:lts
         env:
         - name: JENKINS_OPTS
-          value: '--prefix=/jenkins'
+          value: '--prefix=/'
         ports:
         - containerPort: 8080
           name: web
@@ -36,7 +36,7 @@ spec:
       volumes:
         - name: jenkins-home
           hostPath:
-            path: /home/elon/jenkins
+            path: /root/jenkins
             type: Directory
 ---
 apiVersion: v1
@@ -62,9 +62,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: jenkins.shuhariko.com.ar
+    http:
       paths:
-      - path: /jenkins
+      - path: /
         pathType: Prefix
         backend:
           service:
