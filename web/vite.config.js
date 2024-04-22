@@ -14,7 +14,7 @@ export default defineConfig({
     },
     proxy: {
       '^/api': {
-        target: 'http://api',
+        target: process.env.API_HOST || 'http://api.avatar.d.shuhariko.com.ar',
         changeOrigin: true
       }
     }
